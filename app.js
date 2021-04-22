@@ -11,7 +11,9 @@ app.use(cors(corsOptions))
 // parse request of content-type - application/json
 app.use(express.json())
 // parse content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({
+    extended: true
+}))
 
 // Connect Database
 const db = require('./app/models')
@@ -35,6 +37,7 @@ app.get('/', (req, res) => {
 })
 
 require('./app/routes/product.routes')(app)
+require('./app/routes/order.routes')(app)
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => {
