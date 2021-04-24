@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     // look a cart
     router.get('/user/:id', order.findCart)
+    router.post('/update/user/:id', order.addToCart)
 
     app.use('/api/orders', router)
 }

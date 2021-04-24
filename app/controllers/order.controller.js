@@ -24,3 +24,23 @@ exports.findCart = (req, res) => {
             })
         })
 }
+
+exports.addToCart = (req, res) => {
+    const id = Number(req.params.id)
+    const productCode = String(req.body.product)
+
+    Order.updateOne({
+            user_id: id
+        }, {
+            $addToSet: {
+                cart_items: productCode
+            }
+        })
+        .then((result) => {
+            res.send(result)
+        }).catch((err) => {
+            res.status(409).send({
+                message: err.message || "Some error while add to cart."
+            })
+        });
+}
