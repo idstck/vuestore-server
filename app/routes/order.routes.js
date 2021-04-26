@@ -6,6 +6,7 @@ module.exports = (app) => {
     // look a cart
     router.get('/user/:id', order.findCart)
     router.post('/update/user/:id', order.addToCart)
+    router.delete('/delete/user/:id/product/:code', order.removeFromCart)
 
     app.use('/api/orders', router)
 }

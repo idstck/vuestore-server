@@ -44,3 +44,23 @@ exports.addToCart = (req, res) => {
             })
         });
 }
+
+exports.removeFromCart = (req, res) => {
+    const id = Number(req.params.id)
+    const productCode = String(req.params.code)
+
+    Order.updateOne({
+            user_id: id
+        }, {
+            $pull: {
+                cart_items: productCode
+            }
+        })
+        .then((result) => {
+            res.send(result)
+        }).catch((err) => {
+            res.status(409).send({
+                message: err.message || "Some error while add to cart."
+            })
+        });
+}
