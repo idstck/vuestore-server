@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 // create instance node
 const app = express()
 
@@ -14,7 +15,8 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-
+// path for image
+app.use('/img', express.static(path.join(__dirname, './public/img')))
 // Connect Database
 const db = require('./app/models')
 db.mongoose
