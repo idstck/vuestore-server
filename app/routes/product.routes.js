@@ -3,8 +3,9 @@ module.exports = (app) => {
 
     let router = require('express').Router()
 
-    // index
+    // in
     router.get('/', products.findAll)
+    router.get('/:id', products.findOne)
 
     app.use('/api/products', router)
 }
